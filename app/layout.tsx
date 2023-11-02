@@ -38,7 +38,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="motion-theme-dark"
           >
-            <Toaster position="bottom-right" />
+            <Toaster position="bottom-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
