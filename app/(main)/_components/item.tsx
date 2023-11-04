@@ -65,7 +65,7 @@ const Item = ({
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
+        router.push(`/documents/${documentId}`);
       }
     );
     toast.promise(promise, {
@@ -111,7 +111,14 @@ const Item = ({
       ) : (
         <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground" />
       )}
-      <span className="truncate">{label}</span>
+      <span
+        className="truncate"
+        onClick={() => {
+          router.push(`/documents/${id}`);
+        }}
+      >
+        {label}
+      </span>
       {isSearch && (
         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
           <span className="text-xs">⌘ + </span>K |{" "}
@@ -125,7 +132,7 @@ const Item = ({
           role="button"
           onClick={onCreate}
         >
-          <div className="opacity:0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1">
+          <div className="opacity:0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300  dark:hover:bg-neutral-600 mr-1">
             <Plus className="h-4 w-4 text-muted-foreground" />
           </div>
           <DropdownMenu>
@@ -137,7 +144,7 @@ const Item = ({
             >
               <div
                 role="button"
-                className="opacity:0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
+                className="opacity:0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-1"
               >
                 <MoreHorizontal></MoreHorizontal>
               </div>
