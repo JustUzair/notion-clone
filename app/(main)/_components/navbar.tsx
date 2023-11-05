@@ -19,7 +19,9 @@ export const Navbar = ({ isCollapsed, onResetWidth }: Props) => {
   const document = useQuery(api.documents.getById, {
     documentId: params?.documentId as Id<"documents">,
   });
-
+  if (document === null) {
+    return null;
+  }
   if (document === undefined) {
     return (
       <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center justify-between">
@@ -30,9 +32,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: Props) => {
       </nav>
     );
   }
-  if (document === null) {
-    return null;
-  }
+
   return (
     <>
       <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center gap-x-4">
