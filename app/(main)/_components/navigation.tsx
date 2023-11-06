@@ -35,10 +35,12 @@ export const Navigation = () => {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:768px)");
   const create = useMutation(api.documents.create);
-  const handleCreate = () => {
+
+  const handleCreate = async () => {
     const promise = create({ title: "Untitled" }).then((documentId) =>
       router.push(`/documents/${documentId}`)
     );
+
     toast.promise(promise, {
       loading: "Creating a new note...",
       success: "Note created successfully!",

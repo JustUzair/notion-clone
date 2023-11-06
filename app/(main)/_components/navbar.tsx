@@ -9,20 +9,18 @@ import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
 
-interface Props {
+interface NavbarProps {
   isCollapsed: boolean;
   onResetWidth: () => void;
 }
 
-export const Navbar = ({ isCollapsed, onResetWidth }: Props) => {
-  const params = useParams();
+export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
+  const { documentId } = useParams();
   const document = useQuery(api.documents.getById, {
-    documentId: params?.documentId as Id<"documents">,
+    documentId: documentId as Id<"documents">,
   });
-  if (document === null) {
-    return null;
-  }
-  if (document === undefined) {
+
+  if (document === undefined)
     return (
       <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center justify-between">
         <Title.Skeleton />
@@ -31,6 +29,9 @@ export const Navbar = ({ isCollapsed, onResetWidth }: Props) => {
         </div>
       </nav>
     );
+
+  if (document === null) {
+    return null;
   }
 
   return (
