@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
+import { Publish } from "./publish";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -48,6 +49,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           <Title initialData={document}></Title>
           {!document.isArchived && (
             <div className="flex item-center gap-x-2">
+              <Publish initialData={document} />
               <Menu documentId={document._id} />
             </div>
           )}
